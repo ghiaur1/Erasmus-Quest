@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erasmus Quest: Hostel Hijinks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="start-screens.css">
+  <link rel="stylesheet" href="phase4.css">
+</head>
+<body>
+  <div id="game-container">
+    <!-- Start Screen -->
+    <div id="start-screen">
+      <h1>Erasmus Quest</h1>
+      <p class="subtitle">Los Toros</p>
+      <div class="introduction">
+        <p>
+          After a long day, you enter the hostel room thinking<br> about relaxing... but the boys in the room have<br> something else in mind. Their jokes are a bit too physical<br> — and not in a friendly way.<br>
+          You have to endure their "affectionate" touches<br> for 20 seconds until the teachers come to save you.
+        </p>
+      </div>
+      <button id="start-button" class="pixel-art-btn">Start Game</button>
+      <img src="Image/Personaje/EU/EU.png" alt="Player Character" class="start-screen-character">
+    </div>
+
+    <!-- Game Header -->
+    <div id="game-header" class="hidden">
+      <h1 class="game-title">Erasmus Quest: Hostel Survival</h1>
+      <p class="game-subtitle">Avoid the boys for 20 seconds until the teachers arrive!</p>
+
+      <div id="game-stats">
+        <div id="timer-container">
+          <div id="timer">Time: 20s</div>
+        </div>
+        <div id="lives-container">
+          <div id="lives">Lives: 5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Game Area -->
+    <div id="phase-4-container" class="hidden">
+      <canvas id="hostel-canvas" width="800" height="400"></canvas>
+      <div id="game-message" class="hidden"></div>
+    </div>
+
+    <!-- Restart Screen -->
+    <div id="restart-screen" class="hidden">
+      <h1>Game Over!</h1>
+      <p>The boys caught you! You were touched too many times.</p>
+      <button id="restart-button" class="pixel-art-btn">Restart Game</button>
+    </div>
+
+    <!-- Completion Screen -->
+    <div id="completion-screen" class="hidden">
+      <div class="completion-content">
+        <h1>Level Complete!</h1>
+        <p>You held out until the teachers arrived! Well done!</p>
+        <button id="next-chapter-btn" class="pixel-art-btn">Next Chapter</button>
+      </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="hidden">
+      <h1>Loading next chapter...</h1>
+      <div id="loading-bar-container">
+        <div id="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="common.js"></script>
+  <script src="phase4.js"></script>
+</body>
+</html>

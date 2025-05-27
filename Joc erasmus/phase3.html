@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Erasmus Quest: Airport Bathroom Battle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="start-screens.css">
+    <link rel="stylesheet" href="phase3.css">
+</head>
+<body>
+   <!-- Start Screen -->
+   <div id="game-container">
+     <div id="start-screen">
+       <h1>Erasmus Quest</h1>
+       <p class="subtitle">Airport Bathroom Battle</p>
+       <div class="introduction">
+         <p>
+           Due to time constraints, you drank a magic potion<br><br> and skipped the Otopeni airport!<br><br>
+           You've arrived directly at Sevilla Airport.<br><br>
+           Before continuing your adventure, you need to use the bathroom,<br><br> but it's infested with giant rats!<br><br>
+           Defeat them by throwing soap while avoiding their Ebola attacks.
+         </p>
+       </div>
+       <button id="start-button" class="pixel-art-btn">Start Battle</button>
+       <img src="Image/Personaje/EU/EU.png" alt="Player Character" class="start-screen-character">
+       <img src="Image/Obiecte/sobolan.png" alt="Sobolan" class="start-screen-character" style="right: 120px; width: 60px;">
+     </div>
+
+   <!-- Game header -->
+   <div id="game-header" class="hidden">
+     <h1 class="game-title">Erasmus Quest: Bathroom Battle</h1>
+     <p class="game-subtitle">Throw soap at the rats and avoid their Ebola  eattacks!</p>
+   </div>
+
+   <!-- Game container -->
+   <div id="phase-3-container" class="hidden">
+     <canvas id="battle-canvas" width="800" height="400"></canvas>
+     <!-- Game message that appears without blocking the game -->
+     <div id="game-message" class="hidden"></div>
+     <!-- Health and soap counter -->
+     <div id="game-stats">
+       <div id="health-container">
+         <span>Health:</span>
+         <div id="health-bar">
+           <div id="health-fill"></div>
+         </div>
+       </div>
+       <div id="soap-counter">Soap: 12</div>
+       <div id="timer">Time: 24s</div>
+     </div>
+   </div>
+
+   <!-- Restart Screen -->
+   <div id="restart-screen" class="hidden">
+     <h1>Game Over!</h1>
+     <p>You ran out of time or the rats defeated you. Don't worry, you can try again!</p>
+     <button id="restart-button" class="pixel-art-btn">Restart Battle</button>
+   </div>
+
+   <!-- Completion Screen -->
+   <div id="completion-screen" class="hidden">
+     <div class="completion-content">
+       <h1>Battle Won!</h1>
+       <p>Congratulations! You've defeated the rats and can now use the bathroom in peace!</p>
+       <button id="next-chapter-btn" class="pixel-art-btn">Continue Adventure</button>
+     </div>
+   </div>
+
+   <!-- Loading Screen -->
+   <div id="loading-screen" class="hidden">
+     <h1>Loading next chapter...</h1>
+     <div id="loading-bar-container">
+       <div id="loading-bar"></div>
+     </div>
+   </div>
+
+   </div> <!-- Close game-container -->
+
+   <script src="common.js"></script>
+   <script src="phase3_new.js"></script>
+</body>
+</html>

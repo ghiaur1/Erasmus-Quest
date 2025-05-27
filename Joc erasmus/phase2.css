@@ -1,0 +1,271 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #000;
+    color: #00ff00;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-image: url('Image/Fundal/botosani.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hidden { display: none; }
+
+#start-screen {
+    background: rgba(0,0,0,0.8);
+    color: #00ff00;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 60px auto 0 auto;
+    width: 60vw;
+    height: 50vh;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
+
+#phase-2-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+#bus-canvas {
+    border: 2px solid #00ff00;
+    background: transparent;
+    display: block;
+    margin: 20px auto;
+    width: 800px;
+    height: 400px;
+    max-width: 98vw;
+    max-height: 60vw;
+}
+
+.pixel-art-ui {
+    color: #00ff00;
+    font-family: 'Press Start 2P', 'VT323', monospace, cursive;
+    font-size: 1.5em;
+    margin: 0 0 20px 0;
+    text-shadow: 2px 2px 0 #111;
+    display: inline-block;
+    padding: 14px 48px;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pixel-art-btn {
+    display: inline-block;
+    padding: 14px 48px;
+    background: #222;
+    color: #00ff00;
+    font-family: 'Press Start 2P', 'VT323', monospace, cursive;
+    font-size: 1.1em;
+    border: 4px solid #00ff00;
+    border-radius: 0;
+    box-shadow: 0 0 0 4px #111, 4px 4px 0 0 #00aa00;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    text-shadow: 2px 2px 0 #111;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+.pixel-art-btn:hover, .pixel-art-btn:focus {
+    background: #00ff00;
+    color: #111;
+    box-shadow: 0 0 0 4px #00ff00, 4px 4px 0 0 #111, 0 0 10px #00ff00;
+    outline: none;
+    transform: scale(1.05);
+}
+.pixel-art-btn:active {
+    transform: scale(0.97) translate(2px, 2px);
+    box-shadow: 0 0 0 2px #111, 2px 2px 0 0 #00aa00;
+}
+
+/* Animation for the game message */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+
+@media (max-width: 900px) {
+    #phase-2-container {
+        max-width: 100vw;
+        padding: 5px;
+    }
+    #bus-canvas {
+        width: 98vw !important;
+        height: 40vw !important;
+        max-width: 100vw;
+        max-height: 50vw;
+    }
+}
+
+@media (max-width: 600px) {
+    #bus-canvas {
+        width: 99vw !important;
+        height: 60vw !important;
+        max-width: 100vw;
+        max-height: 70vw;
+    }
+    .pixel-art-ui {
+        font-size: 1.1em;
+        padding: 8px 10px;
+    }
+    .pixel-art-btn {
+        font-size: 1em;
+        padding: 10px 10px;
+    }
+}
+
+
+.game-title {
+  color: #ffcc00;
+  font-size: 2em;
+  margin: 30px 0 10px 0;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #222, 0 0 12px #ffcc00;
+  font-family: 'Press Start 2P', monospace, cursive;
+}
+
+.game-subtitle {
+  color: #eb0000;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 0 #000000;
+  font-family: 'Press Start 2P', monospace, cursive;
+}
+
+#game-header {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Game message styling */
+#game-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ff6600;
+  padding: 15px 25px;
+  border: 3px solid #00ff00;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  z-index: 100;
+  text-align: center;
+  box-shadow: 0 0 15px #00ff00;
+  max-width: 80%;
+  animation: fadeInOut 2s ease-in-out;
+}
+#restart-screen, #completion-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#restart-screen.hidden, #completion-screen.hidden {
+  display: none;
+}
+
+#restart-screen h1, #completion-screen h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+#restart-screen button, #completion-screen button {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.completion-content {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 30px;
+  border: 4px solid #00ff00;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ff00;
+  text-align: center;
+}
+
+#completion-screen h1 {
+  color: #ffcc00;
+  text-shadow: 0 0 10px #ffcc00;
+}
+
+#completion-screen p {
+  color: #00ff00;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* Loading screen for next chapter */
+#bus-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #00ff00;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#bus-loading-screen.hidden {
+  display: none;
+}
+
+#bus-loading-screen h1 {
+  color: #ffcc00;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #ffcc00;
+}
+
+.bus-animation-container {
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#bus-gif {
+  width: 100%;
+  max-width: 500px;
+  border: 3px solid #00ff00;
+  box-shadow: 0 0 20px #00ff00;
+}
+
+#loading-bar-container {
+  width: 80%;
+  height: 30px;
+  border: 3px solid #00ff00;
+  margin-top: 40px;
+  background-color: black;
+  overflow: hidden;
+}
+
+#loading-bar {
+  width: 0;
+  height: 100%;
+  background-color: #00ff00;
+  transition: width 0.1s linear;
+}

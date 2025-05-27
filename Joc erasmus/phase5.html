@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erasmus Quest: Try Not to Fall Asleep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="start-screens.css">
+  <link rel="stylesheet" href="phase5.css">
+</head>
+<body>
+  <div id="game-container">
+    <!-- Start Screen Container for Three-Stage System -->
+    <div id="start-screen-container">
+      <!-- Start Screen Stage 1: Setting the Scene -->
+      <div id="start-screen-stage1">
+        <div class="progress-indicator">
+          <span class="progress-dot active"></span>
+          <span class="progress-dot"></span>
+          <span class="progress-dot"></span>
+        </div>
+        <h1>Erasmus Quest</h1>
+        <p class="subtitle">Chapter 5: Try Not to Fall Asleep</p>
+        <div class="introduction">
+          <p><strong>Your first day at an IT internship has arrived!</strong> You've made it through your Erasmus journey and now face a new challenge.</p>
+
+          <p>You're at your first day of internship at an IT company. The classroom is filled with the sound of keyboards and colleagues murmuring. You, shy and a bit tired, have quietly taken a seat in the back of the room, hoping not to draw attention.</p>
+
+          <p>💻 This is where your real learning begins - but staying awake might be harder than you think!</p>
+        </div>
+        <button id="continue-button-1" class="pixel-art-btn">Continue</button>
+        <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+      </div>
+
+      <!-- Start Screen Stage 2: Introducing the Situation -->
+      <div id="start-screen-stage2" class="hidden">
+        <div class="progress-indicator">
+          <span class="progress-dot completed"></span>
+          <span class="progress-dot active"></span>
+          <span class="progress-dot"></span>
+        </div>
+        <h1>Chapter 5: Try Not to Fall Asleep</h1>
+        <p class="subtitle">The JavaScript Lesson</p>
+        <div class="introduction">
+          <p><strong>At the front of the class, Marcos, your JavaScript trainer, begins speaking enthusiastically about variables, functions, and objects.</strong></p>
+
+          <p>But after a night with only four hours of sleep, each of Marcos's words seems to transform into a monotonous drone. The technical concepts blur together as your exhaustion takes hold.</p>
+
+          <p>😴 <strong>The struggle begins:</strong> Your body wants to rest, but your mind knows you need to learn!</p>
+        </div>
+        <button id="continue-button-2" class="pixel-art-btn">Continue</button>
+        <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+      </div>
+
+      <!-- Start Screen Stage 3: The Challenge -->
+      <div id="start-screen-stage3" class="hidden">
+        <div class="progress-indicator">
+          <span class="progress-dot completed"></span>
+          <span class="progress-dot completed"></span>
+          <span class="progress-dot active"></span>
+        </div>
+        <h1>Chapter 5: Try Not to Fall Asleep</h1>
+        <p class="subtitle">The Ultimate Challenge</p>
+        <div class="introduction">
+          <p><strong>You struggle to keep your eyes open and look at the screen, but your eyelids are getting heavier and heavier.</strong></p>
+
+          <p><em><strong>Your mission:</strong> You must resist sleep and stay awake while Marcos continues teaching. Press SPACE when the indicator hits the green zone to fight off drowsiness!</em></p>
+
+          <p style="color: #ffcc00; font-size: 0.9em;">💡 <strong>Tip:</strong> Watch your sleepiness meter - if it fills up completely, you'll fall asleep and embarrass yourself!</p>
+        </div>
+        <button id="start-button" class="pixel-art-btn">Begin Internship</button>
+        <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+      </div>
+    </div> <!-- End Start Screen Container -->
+
+    <!-- Game Header -->
+    <div id="game-header" class="hidden">
+      <h1>Erasmus Quest: Stay Awake Challenge</h1>
+      <p class="game-subtitle">Stay awake for 30 seconds while Marcos is talking!</p>
+
+      <div id="game-stats">
+        <div id="timer-container">
+          <div id="timer">Time: 30s</div>
+        </div>
+        <div id="sleepiness-container">
+          <div id="sleepiness-label">Sleepiness:</div>
+          <div id="sleepiness-bar">
+            <div id="sleepiness-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Game Area -->
+    <div id="phase-5-container" class="hidden">
+      <canvas id="classroom-canvas" width="800" height="500"></canvas>
+
+      <!-- Dialog Bubble is now drawn directly on the canvas -->
+
+      <!-- Attack Meter Bar (Undertale style) -->
+      <div id="attack-meter" class="hidden">
+        <div id="attack-bar">
+          <div id="attack-zone"></div>
+          <div id="attack-indicator"></div>
+        </div>
+        <p id="attack-instruction">Press SPACE when the indicator is in the green zone!</p>
+      </div>
+
+      <!-- Game message that appears without blocking the game -->
+      <div id="game-message" class="hidden"></div>
+    </div>
+
+    <!-- Restart Screen -->
+    <div id="restart-screen" class="hidden">
+      <h1>You Fell Asleep!</h1>
+      <p>You woke up with everyone staring at you... and a mustache drawn with permanent marker on your face!</p>
+      <button id="restart-button" class="pixel-art-btn">Restart Game</button>
+    </div>
+
+    <!-- Completion Screen -->
+    <div id="completion-screen" class="hidden">
+      <div class="completion-content">
+        <h1>You Survived the Lesson!</h1>
+        <p style="justify-self:center;">JavaScript remains a mystery... but at least you didn't fall completely asleep. Respect!</p>
+        <button id="next-chapter-btn" class="pixel-art-btn">Next Chapter</button>
+      </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="hidden">
+      <h1>Loading next chapter...</h1>
+      <div id="loading-bar-container">
+        <div id="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="common.js"></script>
+  <script src="phase5.js"></script>
+</body>
+</html>

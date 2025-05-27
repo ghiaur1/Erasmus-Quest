@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erasmus Quest - Chapter 1: Packing Your Dreams</title>
+    <meta name="description" content="Experience the Erasmus adventure! Pack your essentials and begin your European student exchange journey to Seville, Spain.">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="start-screens.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Fullscreen Recommendation Alert -->
+        <div id="fullscreen-alert" class="hidden">
+            <div class="fullscreen-alert-overlay">
+                <div class="fullscreen-alert-content">
+                    <h2>Erasmus Quest - Fullscreen Recommended</h2>
+                    <p>For the best gaming experience, we recommend playing in fullscreen mode. You can press F11 or use your browser's fullscreen option.</p>
+                    <div class="fullscreen-alert-buttons">
+                        <button id="enable-fullscreen-btn" class="pixel-art-btn fullscreen-btn">Enable Fullscreen</button>
+                        <button id="continue-anyway-btn" class="pixel-art-btn fullscreen-btn">Continue Anyway</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Screen Stage 1: Erasmus Introduction -->
+        <div id="start-screen-stage1" class="hidden">
+            <div class="progress-indicator">
+                <span class="progress-dot active"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+            </div>
+            <h1>Erasmus Quest</h1>
+            <p class="subtitle">Your European Adventure Begins Here!</p>
+            <div class="introduction">
+                <p><strong>Welcome to Erasmus Quest!</strong> Experience the Erasmus adventure - Europe's student exchange program where students study abroad, explore new cultures, and create lifelong memories.</p>
+
+                <p>You're about to embark on an incredible journey to <strong>Seville, Spain</strong> through the Erasmus program. This adventure will test your adaptability, cultural awareness, and survival skills as a European exchange student.</p>
+            </div>
+            <button id="continue-button-1" class="pixel-art-btn">Continue</button>
+            <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+        </div>
+
+        <!-- Start Screen Stage 2: Challenge Description -->
+        <div id="start-screen-stage2" class="hidden">
+            <div class="progress-indicator">
+                <span class="progress-dot completed"></span>
+                <span class="progress-dot active"></span>
+                <span class="progress-dot"></span>
+            </div>
+            <h1>Chapter 1: Packing Your Dreams</h1>
+            <p class="subtitle">Prepare for Your Erasmus Adventure!</p>
+            <div class="introduction">
+                <p><strong>Your first challenge:</strong> Pack your suitcase with all the essentials for your journey. Navigate your room and collect all the items you'll need for your Erasmus adventure!</p>
+            </div>
+            <button id="continue-button-2" class="pixel-art-btn">Continue</button>
+            <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+        </div>
+
+        <!-- Start Screen Stage 3: Items and Controls -->
+        <div id="start-screen-stage3" class="hidden">
+            <div class="progress-indicator">
+                <span class="progress-dot completed"></span>
+                <span class="progress-dot completed"></span>
+                <span class="progress-dot active"></span>
+            </div>
+            <h1>Chapter 1: Packing Your Dreams</h1>
+            <p class="subtitle">Ready to Pack?</p>
+            <div class="introduction">
+                <p><strong>What you'll need to collect:</strong><br>
+                💻 Your laptop for studies and staying connected<br>
+                📚 Study materials and course notes<br>
+                👕 Clean clothes for your stay<br>
+                ☕ Coffee to fuel late-night study sessions<br>
+                🍉 Snacks for energy during your journey</p>
+
+                <p><em><strong>Controls:</strong> Use arrow keys or WASD to move around the room and collect the necessary items.</em></p>
+            </div>
+            <button id="start-button" class="pixel-art-btn">Start Your Journey</button>
+            <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+        </div>
+
+        <!-- Phase 1: Your Room -->
+        <div id="phase-1" class="hidden">
+            <div id="game-header">
+                <h2>Chapter 1: Packing Your Dreams</h2>
+                <p>Navigate your room and collect all the essential items for your Erasmus adventure!</p>
+
+                <div id="game-stats">
+                    <div class="status-container">
+                        <span class="status-label">Luggage Progress:</span>
+                        <span id="luggage-counter" class="status-value">0/5</span>
+                    </div>
+                </div>
+            </div>
+
+            <canvas id="game-canvas" width="800" height="400"></canvas>
+
+            <div id="bag">
+                <h3>📦 Your Erasmus Essentials</h3>
+                <ul id="bag-items"></ul>
+            </div>
+
+            <!-- Game message overlay -->
+            <div id="game-message" class="hidden"></div>
+        </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+    <script src="common.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

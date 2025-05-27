@@ -1,0 +1,138 @@
+// Debug Functions for Phase5
+// Save this file for later use when debugging is needed
+
+// Debug variables
+let debugMode = true; // Set to true to enable debug mode
+let lastClickX = 0;
+let lastClickY = 0;
+
+// Debug event listener for mouse clicks
+document.addEventListener('click', function(event) {
+  if (debugMode && canvas) {
+    // Calculate coordinates relative to canvas
+    const rect = canvas.getBoundingClientRect();
+    lastClickX = Math.round(event.clientX - rect.left);
+    lastClickY = Math.round(event.clientY - rect.top);
+    
+    // Check if click was inside the canvas
+    if (lastClickX >= 0 && lastClickX <= canvas.width && 
+        lastClickY >= 0 && lastClickY <= canvas.height) {
+      console.log(`Click in canvas at coordinates: (${lastClickX}, ${lastClickY})`);
+      
+      // Show coordinates on screen
+      showDebugInfo();
+    }
+  }
+});
+
+// Draw debug information on the canvas
+function drawDebugInfo() {
+  if (!ctx || !canvas) return;
+  
+  // Save context state
+  ctx.save();
+  
+  // Set style for debug text
+  ctx.fillStyle = 'rgba(255, 255, 0, 0.8)';
+  ctx.font = '14px monospace';
+  
+  // Show last click coordinates
+  ctx.fillText(`Last Click: (${lastClickX}, ${lastClickY})`, 10, 20);
+  
+  // Show teacher position
+  ctx.fillText(`Teacher Position: (70, 200) - Size: 200x200`, 10, 40);
+  
+  // Show player position
+  const playerX = canvas.width - 200;
+  const playerY = canvas.height - 180;
+  ctx.fillText(`Player Position: (${playerX}, ${playerY}) - Size: 100x150`, 10, 60);
+  
+  // Show game state
+  ctx.fillText(`Game Time: ${Math.ceil(gameTime)}s | Sleepiness: ${sleepiness}%`, 10, 80);
+  ctx.fillText(`Failed Attempts: ${failedAttempts}`, 10, 100);
+  
+  // Draw a circle at the last click position
+  if (lastClickX > 0 && lastClickY > 0) {
+    ctx.beginPath();
+    ctx.arc(lastClickX, lastClickY, 5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255, 0, 0, 0.7)';
+    ctx.fill();
+    
+    // Draw reference lines
+    ctx.beginPath();
+    ctx.moveTo(lastClickX, 0);
+    ctx.lineTo(lastClickX, canvas.height);
+    ctx.moveTo(0, lastClickY);
+    ctx.lineTo(canvas.width, lastClickY);
+    ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+  
+  // Restore context state
+  ctx.restore();
+}
+
+// Show debug information in a message
+function showDebugInfo() {
+  if (debugMode) {
+    const debugMessage = `Click: (${lastClickX}, ${lastClickY})`;
+    
+    // Create element for displaying debug info
+    let debugElement = document.getElementById('debug-info');
+    
+    if (!debugElement) {
+      debugElement = document.createElement('div');
+      debugElement.id = 'debug-info';
+      debugElement.style.position = 'absolute';
+      debugElement.style.top = '10px';
+      debugElement.style.right = '10px';
+      debugElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+      debugElement.style.color = '#ffff00';
+      debugElement.style.padding = '10px';
+      debugElement.style.borderRadius = '5px';
+      debugElement.style.fontFamily = 'monospace';
+      debugElement.style.zIndex = '1000';
+      document.body.appendChild(debugElement);
+    }
+    
+    debugElement.textContent = debugMessage;
+    
+    // Update canvas to draw debug info
+    if (canvas && ctx) {
+      drawGame();
+    }
+  }
+}
+
+// Debug keyboard shortcut in handleKeyPress function
+// Add this to your handleKeyPress function:
+/*
+  // Toggle debug mode with Ctrl+D
+  if (event.code === 'KeyD' && event.ctrlKey) {
+    debugMode = !debugMode;
+    console.log(`Debug mode ${debugMode ? 'enabled' : 'disabled'}`);
+    
+    // Show or hide debug element
+    const debugElement = document.getElementById('debug-info');
+    if (debugElement) {
+      debugElement.style.display = debugMode ? 'block' : 'none';
+    }
+    
+    // Update canvas
+    if (canvas && ctx) {
+      drawGame();
+    }
+    
+    // Show message
+    showMessage(`Debug mode ${debugMode ? 'enabled' : 'disabled'}`);
+  }
+*/
+
+// Add this to drawGame function to enable debug info display:
+/*
+  // Draw debug information if debug mode is enabled
+  if (debugMode) {
+    drawDebugInfo();
+  }
+*/

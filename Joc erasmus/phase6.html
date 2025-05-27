@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erasmus Quest: Final Showdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="start-screens.css">
+  <link rel="stylesheet" href="phase6.css">
+
+  <style>
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    #playMusicButton:hover {
+      background: #00cc00 !important;
+      transform: scale(1.1);
+    }
+  </style>
+
+  <!-- Audio management is now handled in phase6.js -->
+</head>
+<body>
+  <!-- Play music button that will be visible until music starts playing -->
+  <button id="playMusicButton" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: #00ff00; color: #000; border: 4px solid #111; padding: 10px 20px; border-radius: 5px; font-family: 'Press Start 2P', cursive; font-size: 14px; cursor: pointer; box-shadow: 0 0 10px #00ff00; animation: pulse 1s infinite alternate;">
+    PLAY MUSIC
+  </button>
+
+  <div id="game-container">
+    <!-- Start Screen -->
+    <div id="start-screen">
+      <h1>Erasmus Quest</h1>
+      <p class="subtitle">Final Showdown - "Code or Be Coded"</p>
+      <div class="introduction">
+       <p>
+  After all your adventures, you've reached the final stage. Marcos, your JavaScript guru, awaits for the ultimate test. To complete the Erasmus quest, you must face him in an epic battle — a symbolic and literal final project. The classroom has changed... reality and code are merging. Use everything you've learned to defeat Marcos and prove your skills. His attacks are powered by JavaScript, and you must counter them with your coding abilities. This is your moment to shine. Are you ready?
+</p>
+
+      </div>
+      <div style="position: relative; z-index: 100; margin: 20px 0;">
+        <button id="start-button" class="pixel-art-btn">
+          START BATTLE
+        </button>
+      </div>
+      <img src="Image/Personaje/EU/EU.png" alt="Player Character" class="start-screen-character">
+      <img src="Image/Personaje/Marcos.png" alt="Marcos" class="start-screen-character">
+    </div>
+
+    <!-- Game Header -->
+    <div id="game-header" class="hidden">
+      <h1>Erasmus Quest: Final Showdown</h1>
+      <p class="game-subtitle">Defeat Marcos to complete your journey!</p>
+
+      <div id="game-stats">
+        <div id="player-health-container">
+          <div id="player-health-label">Your Health:</div>
+          <div id="player-health-bar">
+            <div id="player-health-fill"></div>
+          </div>
+        </div>
+        <div id="boss-health-container">
+          <div id="boss-health-label">Marcos Health:</div>
+          <div id="boss-health-bar">
+            <div id="boss-health-fill"></div>
+          </div>
+        </div>
+        <div id="inspiration-container">
+          <div id="inspiration-label">Inspiration:</div>
+          <div id="inspiration-bar">
+            <div id="inspiration-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Game Area -->
+    <div id="battle-container" name="battle" class="hidden">
+      <canvas id="battle-canvas" width="800" height="500"></canvas>
+
+      <!-- Controls Info -->
+      <div id="controls-info">
+        <p>WASD or Arrow Keys: Move</p>
+        <p>Space: Basic Attack (Muffin Shot)</p>
+        <p>Q: Sugar Rush (Speed Boost)</p>
+        <p>E: Debug Bomb</p>
+        <p>R: Inspiration Mode (when charged)</p>
+        <p>Shift: Focus Shield</p>
+      </div>
+
+      <!-- Game message that appears without blocking the game -->
+      <div id="game-message" class="hidden"></div>
+    </div>
+
+
+
+    <!-- Game Over Screen -->
+    <div id="game-over-screen" class="hidden">
+      <h1>You Were Coded!</h1>
+      <p>Marcos' JavaScript mastery was too much for you this time. But every failure is a learning opportunity!</p>
+      <button id="restart-button" class="pixel-art-btn">Try Again</button>
+    </div>
+
+    <!-- Victory Screen -->
+    <div id="victory-screen" class="hidden">
+      <div class="victory-content">
+        <h1>Project Completed!</h1>
+        <p>You didn't just pass.<br>You evolved.</p>
+        <p class="victory-quote">"You've done it. You didn't just finish the project. You survived Seville, you adapted, you learned. You're ready."</p>
+        <p class="victory-footer">Seville 2025 – Completed.</p>
+        <button id="finish-project-btn" class="pixel-art-btn">Finish Project</button>
+      </div>
+    </div>
+
+    <!-- Game Over Final Screen -->
+    <div id="final-game-over-screen" class="hidden">
+      <h1>GAME OVER</h1>
+    </div>
+
+    <!-- Loading Screen (no longer used, kept for reference) -->
+    <div id="loading-screen" class="hidden">
+      <h1>Loading credits...</h1>
+      <div id="loading-bar-container">
+        <div id="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="common.js"></script>
+  <script src="phase6.js"></script>
+
+  <!-- Button functionality is now handled in phase6.js -->
+</body>
+</html>

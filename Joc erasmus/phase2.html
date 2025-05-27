@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Erasmus Quest - Chapter 2: The Bus Station Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Navigate the busy bus station and find your classmates. Don't miss your ride to the airport!">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="start-screens.css">
+    <link rel="stylesheet" href="phase2.css">
+</head>
+<body>
+   <!-- Start Screen Container for Consistent Styling -->
+   <div id="start-screen-container">
+       <!-- Start Screen Stage 1: Chapter Introduction -->
+       <div id="start-screen-stage1">
+         <div class="progress-indicator">
+           <span class="progress-dot active"></span>
+           <span class="progress-dot"></span>
+           <span class="progress-dot"></span>
+         </div>
+         <h1>Erasmus Quest</h1>
+         <p class="subtitle">Chapter 2: The Bus Station Challenge</p>
+         <div class="introduction">
+           <p><strong>Welcome to Seville's bustling bus station!</strong> You've successfully packed your luggage and now face your next challenge.</p>
+
+           <p>Find your classmates and follow them to the correct bus. You can't board until everyone else has gotten on - this is European travel etiquette!</p>
+
+           <p>⏰ The bus to the airport leaves at exactly 9:00 PM. Miss it, and you'll miss your flight to your Erasmus destination!</p>
+         </div>
+         <button id="continue-button-1" class="pixel-art-btn">Continue</button>
+         <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+       </div>
+
+       <!-- Start Screen Stage 2: Mission Details -->
+       <div id="start-screen-stage2" class="hidden">
+         <div class="progress-indicator">
+           <span class="progress-dot completed"></span>
+           <span class="progress-dot active"></span>
+           <span class="progress-dot"></span>
+         </div>
+         <h1>Chapter 2: The Bus Station Challenge</h1>
+         <p class="subtitle">Your Mission</p>
+         <div class="introduction">
+           <p><strong>Your mission:</strong> Find your classmates and follow them to the correct bus. You can't board until everyone else has gotten on - this is European travel etiquette!</p>
+
+           <p><strong>What you need to do:</strong><br>
+           🚌 Look for your fellow students around the station<br>
+           👥 Follow them to see which bus they board<br>
+           ⏰ Wait for everyone to board before getting on yourself</p>
+         </div>
+         <button id="continue-button-2" class="pixel-art-btn">Continue</button>
+         <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+       </div>
+
+       <!-- Start Screen Stage 3: Controls and Start -->
+       <div id="start-screen-stage3" class="hidden">
+         <div class="progress-indicator">
+           <span class="progress-dot completed"></span>
+           <span class="progress-dot completed"></span>
+           <span class="progress-dot active"></span>
+         </div>
+         <h1>Chapter 2: The Bus Station Challenge</h1>
+         <p class="subtitle">Ready to Navigate?</p>
+         <div class="introduction">
+           <p><strong>🏃 Don't let the bus leave without you!</strong></p>
+
+           <p><em><strong>Controls:</strong> Use WASD or arrow keys to navigate the busy station.</em></p>
+
+           <p style="color: #ffcc00; font-size: 0.9em;">💡 <strong>Tip:</strong> Watch the timer and passenger count in the top area of the screen during gameplay!</p>
+         </div>
+         <button id="start-button" class="pixel-art-btn">Enter Bus Station</button>
+         <img src="Image/Personaje/EU/EU.png" alt="Your Erasmus Character" class="start-screen-character">
+       </div>
+   </div> <!-- End Start Screen Container -->
+
+<!-- Titlu și subtitlu vizibile permanent -->
+<div id="game-header" class="hidden">
+  <h1 class="game-title">Chapter 2: Bus Station Challenge</h1>
+  <p class="game-subtitle">Look for your classmates and follow them. <br>You can’t get on the bus until everyone else has boarded.<br>   Be careful not to let it leave without you."</p>
+</div>
+
+<!-- Jocul propriu-zis, ascuns inițial -->
+<div id="phase-2-container" class="hidden">
+    <canvas id="bus-canvas" width="800" height="400"></canvas>
+    <!-- Game message that appears without blocking the game -->
+    <div id="game-message" class="hidden"></div>
+</div>
+
+<!-- Restart Screen -->
+<div id="restart-screen" class="hidden">
+    <div class="completion-content">
+        <h1 style="color: #ff6600;">¡Perdiste el autobús!</h1>
+        <p style="color: #ffcc00;">Don't worry! Even experienced travelers sometimes miss connections. This is all part of the Erasmus learning experience!</p>
+        <p style="color: #00ffff; font-size: 0.9em;">💡 <strong>Tip:</strong> European public transport runs on precise schedules. Always arrive early and watch for your group!</p>
+        <button id="restart-button" class="pixel-art-btn">Try Again</button>
+    </div>
+</div>
+
+<!-- Completion Screen -->
+<div id="completion-screen" class="hidden">
+    <div class="completion-content">
+        <h1 style="color: #00ff00;">¡Excelente!</h1>
+        <p style="color: #ffcc00;">🎉 You successfully navigated the bus station and caught your ride!</p>
+        <p style="color: #00ffff;">
+            ✈️ <strong>Next destination:</strong> Otopeni Airport, Bucharest<br>
+            🎒 Your Erasmus adventure continues as you head to catch your flight!
+        </p>
+        <p style="color: #00ff00; font-size: 0.9em;">You're learning the art of European travel - timing, patience, and following the crowd!</p>
+        <button id="next-chapter-btn" class="pixel-art-btn">Continue to Airport</button>
+    </div>
+</div>
+
+<!-- Bus Animation Screen (Loading Screen) -->
+<div id="bus-loading-screen" class="hidden">
+    <h1 style="color: #ffcc00; text-shadow: 0 0 15px #ffcc00;">¡Todos a bordo!</h1>
+    <p style="color: #00ffff; margin: 20px 0;">🚌 Heading to Otopeni Airport...</p>
+    <div class="bus-animation-container">
+        <img src="Image/Fundal/bussin.gif" alt="Bus driving to airport" id="bus-gif">
+    </div>
+    <div id="loading-bar-container">
+        <div id="loading-bar"></div>
+    </div>
+    <p style="color: #00ff00; margin-top: 20px; font-size: 0.8em;">Loading Chapter 3...</p>
+</div>
+
+    <script src="common.js"></script>
+   <script src="phase2.js"></script>
+</body>
+</html>

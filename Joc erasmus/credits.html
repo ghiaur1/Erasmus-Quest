@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erasmus Quest - Credits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+
+  <!-- Audio management will be handled in the main script to prevent duplicates -->
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    .credits-container {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      background-image: url('Image/Fundal/fundalJoc.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1;
+    }
+
+    .credits-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      z-index: 2;
+      animation: scroll 100s linear forwards; /* Increased duration for longer text */
+      padding-top: 50vh; /* Start higher on screen */
+      padding-bottom: 200px; /* Increased padding for better spacing */
+    }
+
+    .credits-title {
+      color: #ffcc00;
+      font-size: 3em;
+      margin-bottom: 1em;
+      text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+    }
+
+    .credits-text {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2em;
+      line-height: 1.8;
+      color: #00ff00;
+      text-align: center;
+      text-shadow: 2px 2px 0 #000;
+      padding: 0 20px;
+    }
+
+    .credits-footer {
+      color: #ff6600;
+      font-size: 2em;
+      margin-top: 3em;
+      text-shadow: 0 0 10px #ff6600, 0 0 20px #ff6600;
+    }
+
+    .character {
+      position: absolute;
+      z-index: 3;
+    }
+
+    .character.marcos {
+      bottom: 20px;
+      right: 20px;
+      width: 200px;
+      height: auto;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .character.player {
+      bottom: 20px;
+      left: 20px;
+      width: 100px;
+      height: auto;
+      animation: float 3s ease-in-out infinite alternate;
+    }
+
+    .character.chowchow {
+      top: 20%;
+      right: 15%;
+      width: 150px;
+      height: auto;
+      animation: spin 5s linear infinite;
+    }
+
+    .pixel-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2r9//38gYGAEESAAEGAAasgJOgzOKCoAAAAASUVORK5CYII=');
+      opacity: 0.3;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .restart-button {
+      position: fixed;
+      bottom: 30px; /* Increased from 20px to 30px */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10; /* Increased from 5 to 10 to ensure it's always on top */
+      padding: 14px 48px;
+      background: #222;
+      color: #00ff00;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.1em;
+      border: 4px solid #00ff00;
+      border-radius: 0;
+      box-shadow: 0 0 0 4px #111, 4px 4px 0 0 #00aa00, 0 0 20px rgba(0, 0, 0, 0.8);
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 0 #111;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+    }
+
+    /* Add a background behind the button */
+    .restart-button::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+      border-radius: 10px;
+    }
+
+    .restart-button:hover {
+      background: #00ff00;
+      color: #111;
+      box-shadow: 0 0 0 4px #00ff00, 4px 4px 0 0 #111, 0 0 10px #00ff00;
+      transform: translateX(-50%) scale(1.05);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateY(100vh); }
+      3% { transform: translateY(0); } /* Slower initial appearance for readability */
+      97% { transform: translateY(-300vh); } /* Extended scroll distance for longer text */
+      100% { transform: translateY(-280vh); } /* Final position ensures all text is visible */
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(5px, -5px); }
+      60% { transform: translate(-5px, -5px); }
+      80% { transform: translate(5px, 5px); }
+      100% { transform: translate(0); }
+    }
+
+    .glitch {
+      animation: glitch 0.5s ease-in-out infinite;
+      animation-iteration-count: 3;
+      animation-delay: 10s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Audio button that will be visible until music starts playing -->
+  <button id="playMusicButton" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: #00ff00; color: #000; border: none; padding: 10px 20px; border-radius: 5px; font-family: 'Press Start 2P', cursive; font-size: 12px; cursor: pointer; box-shadow: 0 0 10px #00ff00;">
+    PLAY MUSIC
+  </button>
+
+  <div class="credits-container">
+    <div class="overlay"></div>
+    <div class="pixel-effect"></div>
+
+    <img src="Image/Personaje/Marcos.png" alt="Marcos" class="character marcos">
+    <img src="Image/Personaje/EU/EU.png" alt="Player" class="character player">
+    <img src="Image/Projectiles/chowchow.png" alt="ChowChow" class="character chowchow">
+    <img src="Image/Projectiles/chowchow.png" alt="ChowChow" class="character chowchow">
+
+    <div class="credits-content">
+      <h1 class="credits-title glitch">THE END</h1>
+      <div class="credits-text">
+        <p>
+          These past weeks have been insane.<br><br>
+
+          I left with a watermelon in my bag.<br>
+          I almost missed the bus.<br>
+          I teleported to Sevilla—because someone didn't have time to design another airport level.<br>
+          I nearly got tackled by my hostel roommates.<br>
+          I saw beautiful places and met amazing people, and somehow… I grew a little.<br><br>
+
+          I laughed. I got angry. Maybe I even cried a little.<br>
+          But in the end, I was there with the others.<br><br>
+
+          In a foreign country, we became a crew.<br>
+          For that… I am deeply thankful.<br>
+          To my classmates, our teachers, and to Marcos—gracias for these two unforgettable weeks in Sevilla.<br><br>
+
+          The journey is over…<br>
+          But the memories will stay with me forever.<br><br>
+
+          I am surprised by how much I grow through stepping outside my comfort zone.<br>
+          It's not always easy—sometimes it's messy, sometimes it's scary—but every challenge brings something new.<br>
+          I discover more about myself with each unfamiliar place, each unexpected situation.<br>
+          I learn to adapt, to find my own way, and to appreciate the people who join me on this journey.<br>
+          In the end, what I thought would be just a trip becomes a chance to become a better version of myself.
+        </p>
+
+        <h2 class="credits-footer">GAME OVER</h2>
+
+        <!-- Added consistent spacing between sections -->
+        <div style="margin-top: 100px; margin-bottom: 100px;">
+          <h3 style="color: #ffcc00; margin-bottom: 30px;">ERASMUS QUEST</h3>
+          <p style="color: #ff6600; margin-bottom: 20px;">A game by</p>
+          <p style="margin-bottom: 50px;">Ionel Rares</p>
+
+          <p style="color: #ffcc00; margin-top: 50px; margin-bottom: 30px;">SPECIAL THANKS</p>
+          <p style="margin-bottom: 20px;">Marcos - For the JavaScript lessons</p>
+          <p style="margin-bottom: 20px;">Teachers - For guiding us</p>
+          <p style="margin-bottom: 20px;">Classmates - For the memories</p>
+          <p style="margin-bottom: 20px;">Sevilla - For hosting us</p>
+          <p style="color: #00ffff; margin-top: 50px;">Sevilla 2025</p>
+
+          <!-- Added extra space at the bottom to ensure all content is visible before scrolling off -->
+          <div style="height: 500px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="restart-button" onclick="window.location.href='index.html'">RESTART GAME</button>
+  </div>
+
+  <script src="common.js"></script>
+  <script>
+    // Single-instance audio management for credits
+    document.addEventListener('DOMContentLoaded', function() {
+      // Global flag to prevent multiple audio instances
+      if (window.creditsAudioInitialized) {
+        console.log('Credits audio already initialized, skipping...');
+        return;
+      }
+      window.creditsAudioInitialized = true;
+
+      // Set up Web Audio API for better control
+      let audioContext;
+      let audioBuffer;
+      let audioSource;
+      let isPlaying = false;
+      let regularAudio = null;
+
+      // Function to stop any existing audio instances
+      function stopExistingAudio() {
+        // Stop AudioManager background music first
+        if (window.audioManager) {
+          try {
+            window.audioManager.stopBackgroundMusic();
+            console.log('✅ Stopped AudioManager background music');
+          } catch (e) {
+            console.warn('Error stopping AudioManager:', e);
+          }
+        }
+
+        // Stop any existing regular audio
+        if (window.outroMusic) {
+          try {
+            window.outroMusic.pause();
+            window.outroMusic.currentTime = 0;
+            window.outroMusic = null;
+          } catch (e) {
+            console.warn('Error stopping existing outro music:', e);
+          }
+        }
+
+        // Stop any existing Web Audio API sources
+        if (window.audioSource) {
+          try {
+            window.audioSource.stop();
+            window.audioSource = null;
+          } catch (e) {
+            console.warn('Error stopping existing Web Audio source:', e);
+          }
+        }
+      }
+
+      // Function to load and play audio using Web Audio API
+      function setupAudio() {
+        // Stop any existing audio first
+        stopExistingAudio();
+        try {
+          // Create audio context
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+          // Load audio file
+          fetch('Sounds/Music/outro.wav')
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+            .then(buffer => {
+              audioBuffer = buffer;
+              tryPlayAudio();
+            })
+            .catch(error => {
+              console.error('Error loading audio:', error);
+              fallbackToRegularAudio();
+            });
+        } catch (e) {
+          console.error('Web Audio API not supported:', e);
+          fallbackToRegularAudio();
+        }
+      }
+
+      // Function to play audio using Web Audio API
+      function playAudioWithWebAPI() {
+        if (!audioContext || !audioBuffer || isPlaying) return;
+
+        try {
+          // Create a new source (needed each time we play)
+          audioSource = audioContext.createBufferSource();
+          audioSource.buffer = audioBuffer;
+          audioSource.loop = false; // Changed to false to prevent looping
+
+          // Create gain node for volume control
+          const gainNode = audioContext.createGain();
+          gainNode.gain.value = 0.5; // 50% volume
+
+          // Connect nodes
+          audioSource.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+
+          // Start playing
+          audioSource.start(0);
+          isPlaying = true;
+
+          // Hide the play button
+          const playButton = document.getElementById('playMusicButton');
+          if (playButton) {
+            playButton.style.display = 'none';
+          }
+
+          console.log('Successfully playing audio with Web Audio API');
+        } catch (e) {
+          console.error('Error playing with Web Audio API:', e);
+          fallbackToRegularAudio();
+        }
+      }
+
+      // Fallback to regular Audio API
+      function fallbackToRegularAudio() {
+        // Prevent multiple instances
+        if (regularAudio || isPlaying) {
+          console.log('Audio already playing, skipping fallback...');
+          return;
+        }
+
+        // Stop any existing audio first
+        stopExistingAudio();
+
+        regularAudio = new Audio('Sounds/Music/outro.wav');
+        regularAudio.loop = false;
+        regularAudio.volume = 0.5;
+
+        regularAudio.play()
+          .then(() => {
+            isPlaying = true;
+            // Hide the play button
+            const playButton = document.getElementById('playMusicButton');
+            if (playButton) {
+              playButton.style.display = 'none';
+            }
+            console.log('Playing with regular Audio API');
+          })
+          .catch(e => {
+            console.error('Regular audio playback failed:', e);
+            regularAudio = null; // Reset on failure
+            // Keep the button visible as a last resort
+          });
+
+        // Store for global access
+        window.outroMusic = regularAudio;
+      }
+
+      // Try to play audio
+      function tryPlayAudio() {
+        // Try to resume AudioContext (needed for some browsers)
+        if (audioContext && audioContext.state === 'suspended') {
+          audioContext.resume().then(() => playAudioWithWebAPI());
+        } else {
+          playAudioWithWebAPI();
+        }
+      }
+
+      // Set up click handler for the play button
+      const playButton = document.getElementById('playMusicButton');
+      if (playButton) {
+        playButton.addEventListener('click', function() {
+          // Prevent multiple instances
+          if (isPlaying) {
+            console.log('Audio already playing, ignoring button click...');
+            return;
+          }
+
+          if (audioContext && audioBuffer) {
+            tryPlayAudio();
+          } else {
+            fallbackToRegularAudio();
+          }
+        });
+      }
+
+      // Try to set up and play audio (single attempt to prevent duplicates)
+      setupAudio();
+
+      // Clear any session storage flags
+      sessionStorage.removeItem('outroMusicPlaying');
+
+      // Add random glitch effects
+      setInterval(function() {
+        const elements = document.querySelectorAll('.credits-title, .credits-footer');
+        const randomElement = elements[Math.floor(Math.random() * elements.length)];
+        randomElement.classList.add('glitch');
+
+        setTimeout(function() {
+          randomElement.classList.remove('glitch');
+        }, 1500);
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

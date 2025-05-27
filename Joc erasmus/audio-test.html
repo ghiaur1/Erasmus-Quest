@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Management System Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: #000;
+            color: #00ff00;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .test-button {
+            background: #222;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.8em;
+        }
+        .test-button:hover {
+            background: #00ff00;
+            color: #000;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 255, 0, 0.1);
+            border-left: 3px solid #00ff00;
+        }
+        .info {
+            color: #ffcc00;
+            font-size: 0.7em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎵 Audio Management System Test</h1>
+        
+        <div class="status" id="status">
+            Status: Initializing...
+        </div>
+        
+        <div class="info" id="info">
+            Click any button to initialize audio system
+        </div>
+        
+        <h2>Background Music Controls</h2>
+        <button class="test-button" onclick="testSetMusic('Sounds/Music/song1.wav')">Set Song 1</button>
+        <button class="test-button" onclick="testSetMusic('Sounds/Music/song2.wav')">Set Song 2</button>
+        <button class="test-button" onclick="testPlayMusic()">Play Music</button>
+        <button class="test-button" onclick="testPauseMusic()">Pause Music</button>
+        
+        <h2>Sound Effects (with Auto-Ducking)</h2>
+        <button class="test-button" onclick="testSoundEffect('ui-click')">UI Click</button>
+        <button class="test-button" onclick="testSoundEffect('collect')">Collect Item</button>
+        <button class="test-button" onclick="testSoundEffect('complete')">Complete</button>
+        
+        <h2>Volume Controls</h2>
+        <button class="test-button" onclick="testDuckAudio()">Duck Audio</button>
+        <button class="test-button" onclick="testRestoreAudio()">Restore Audio</button>
+        
+        <h2>Persistence</h2>
+        <button class="test-button" onclick="testSaveState()">Save State</button>
+        <button class="test-button" onclick="testLoadState()">Load State</button>
+        <button class="test-button" onclick="testClearState()">Clear State</button>
+        
+        <h2>Current Info</h2>
+        <div class="status" id="currentInfo">
+            No audio info available
+        </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+        // Test sound effects
+        const testSounds = {
+            'ui-click': new Audio('Sounds/Effects/ui-click.wav'),
+            'collect': new Audio('Sounds/Effects/collect.mp3'),
+            'complete': new Audio('Sounds/Effects/complete.mp3')
+        };
+        
+        // Set volumes
+        Object.values(testSounds).forEach(sound => {
+            sound.volume = 0.5;
+        });
+        
+        function updateStatus(message) {
+            document.getElementById('status').textContent = `Status: ${message}`;
+        }
+        
+        function updateInfo(message) {
+            document.getElementById('info').textContent = message;
+        }
+        
+        function updateCurrentInfo() {
+            const info = audioManager.getCurrentInfo();
+            const infoDiv = document.getElementById('currentInfo');
+            
+            if (info) {
+                infoDiv.innerHTML = `
+                    <strong>Track:</strong> ${info.track}<br>
+                    <strong>Time:</strong> ${info.currentTime.toFixed(2)}s / ${info.duration.toFixed(2)}s<br>
+                    <strong>Volume:</strong> ${(info.volume * 100).toFixed(0)}%<br>
+                    <strong>Playing:</strong> ${info.isPlaying ? 'Yes' : 'No'}
+                `;
+            } else {
+                infoDiv.textContent = 'No audio info available';
+            }
+        }
+        
+        function testSetMusic(track) {
+            audioManager.setBackgroundMusic(track);
+            updateStatus(`Set background music: ${track}`);
+            updateCurrentInfo();
+        }
+        
+        function testPlayMusic() {
+            audioManager.playBackgroundMusic();
+            updateStatus('Playing background music');
+            updateCurrentInfo();
+        }
+        
+        function testPauseMusic() {
+            audioManager.pauseBackgroundMusic();
+            updateStatus('Paused background music');
+            updateCurrentInfo();
+        }
+        
+        function testSoundEffect(soundName) {
+            const sound = testSounds[soundName];
+            if (sound) {
+                audioManager.playSoundEffect(sound, true);
+                updateStatus(`Playing sound effect: ${soundName} (with auto-ducking)`);
+            }
+        }
+        
+        function testDuckAudio() {
+            audioManager.duckAudio();
+            updateStatus('Audio ducked to 35%');
+            updateCurrentInfo();
+        }
+        
+        function testRestoreAudio() {
+            audioManager.restoreAudio();
+            updateStatus('Audio restored to 70%');
+            updateCurrentInfo();
+        }
+        
+        function testSaveState() {
+            audioManager.saveCurrentState();
+            updateStatus('Audio state saved to localStorage');
+        }
+        
+        function testLoadState() {
+            audioManager.loadPersistedState();
+            updateStatus('Audio state loaded from localStorage');
+            updateCurrentInfo();
+        }
+        
+        function testClearState() {
+            localStorage.removeItem('erasmusQuestAudio');
+            updateStatus('Audio state cleared from localStorage');
+        }
+        
+        // Update info every second
+        setInterval(updateCurrentInfo, 1000);
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStatus('Audio system ready');
+            updateInfo('Audio system initialized. Try the controls above!');
+        });
+    </script>
+</body>
+</html>
